@@ -4,6 +4,6 @@ project(sparse)
 
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
-file(GLOB sources "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB_RECURSE sources "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(main ${sources})

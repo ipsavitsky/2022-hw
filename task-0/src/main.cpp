@@ -2,5 +2,7 @@
 #include "rational/rational.hpp"
 
 int main(){
-    std::cout << "Hello world\n";
+    Rational_number l(-12, 10);
+    l.simplify();
+    std::cout << l.numerator << "; " << l.denominator << std::endl;
 }
