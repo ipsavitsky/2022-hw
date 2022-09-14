@@ -152,6 +152,18 @@ Rational_number &Rational_number::operator=(const Rational_number &second) {
     return *this;
 }
 
+Rational_number Rational_number::floor() {
+    int64_t new_numerator = numerator - (numerator % denominator);
+    return Rational_number(new_numerator, denominator);
+}
+
+Rational_number Rational_number::round() {
+    int64_t new_numerator = numerator - (numerator % denominator);
+    if ((numerator % denominator) > (denominator / 2))
+        ++new_numerator;
+    return Rational_number(new_numerator, denominator);
+}
+
 std::ostream &operator<<(std::ostream &os, const Rational_number &rn) {
     os << rn.numerator << "/" << rn.denominator;
     return os;

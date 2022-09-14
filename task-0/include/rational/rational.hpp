@@ -41,8 +41,8 @@ class Rational_number {
     operator short() const;
 
     void make_canonical();
-    int64_t round();
-    int64_t floor();
+    Rational_number round();
+    Rational_number floor();
 
     int64_t get_numerator() const;
     uint64_t get_denominator() const;

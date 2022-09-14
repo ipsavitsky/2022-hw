@@ -57,6 +57,6 @@ BOOST_AUTO_TEST_CASE(simplification) {
     BOOST_CHECK_EQUAL(2, a.get_denominator());
     Rational_number b(-12, 10);
     b.make_canonical();
-    BOOST_CHECK_EQUAL(-6, b.get_numerator());
+    BOOST_CHECK_EQUAL(6, b.get_numerator());
     BOOST_CHECK_EQUAL(5, b.get_denominator());
 }
