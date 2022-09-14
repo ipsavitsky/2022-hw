@@ -2,21 +2,27 @@
 #include <cmath>
 #include <iostream>
 
+Rational_number::Rational_number() : numerator(0), denominator(1) {}
+
+Rational_number::Rational_number(long int st) : numerator(st), denominator(1) {}
+
 Rational_number::Rational_number(int64_t numerator, uint64_t denominator)
     : numerator(numerator), denominator(denominator) {}
 
-Rational_number Rational_number::operator*(const Rational_number &second) const {
+Rational_number
+Rational_number::operator*(const Rational_number &second) const {
     return Rational_number(numerator * second.numerator,
                            denominator * second.denominator);
 }
 
-Rational_number Rational_number::operator*=(Rational_number second){
+Rational_number Rational_number::operator*=(Rational_number second) {
     numerator *= second.numerator;
     denominator *= second.denominator;
     return *this;
 }
 
-Rational_number Rational_number::operator/(const Rational_number &second) const {
+Rational_number
+Rational_number::operator/(const Rational_number &second) const {
     return Rational_number(numerator * second.denominator,
                            denominator * second.numerator);
 }
@@ -27,7 +33,8 @@ Rational_number Rational_number::operator/=(Rational_number second) {
     return *this;
 }
 
-Rational_number Rational_number::operator+(const Rational_number &second) const {
+Rational_number
+Rational_number::operator+(const Rational_number &second) const {
     return Rational_number(numerator * second.denominator +
                                second.numerator * denominator,
                            denominator * second.denominator);
@@ -39,7 +46,8 @@ Rational_number Rational_number::operator+=(Rational_number second) {
     return *this;
 }
 
-Rational_number Rational_number::operator-(const Rational_number &second) const {
+Rational_number
+Rational_number::operator-(const Rational_number &second) const {
     return Rational_number(numerator * second.denominator -
                                second.numerator * denominator,
                            denominator * second.denominator);
@@ -64,7 +72,7 @@ int64_t Rational_number::gcd(int64_t frst, int64_t scnd) {
     return frst;
 }
 
-void Rational_number::simplify() {
+void Rational_number::make_canonical() {
     int64_t gcd_val = gcd(numerator, denominator);
     numerator /= gcd_val;
     denominator /= gcd_val;
@@ -126,6 +134,22 @@ Rational_number Rational_number::operator--(int) {
     Rational_number prev = *this;
     --*this;
     return prev;
+}
+
+int64_t Rational_number::get_numerator() const { return numerator; }
+
+uint64_t Rational_number::get_denominator() const { return denominator; }
+
+Rational_number::operator int() const { return numerator / denominator; }
+
+Rational_number::operator long int() const { return numerator / denominator; }
+
+Rational_number::operator short() const { return numerator / denominator; }
+
+Rational_number &Rational_number::operator=(const Rational_number &second) {
+    numerator = second.numerator;
+    denominator = second.denominator;
+    return *this;
 }
 
 std::ostream &operator<<(std::ostream &os, const Rational_number &rn) {

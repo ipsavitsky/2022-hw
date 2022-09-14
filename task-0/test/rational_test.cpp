@@ -50,4 +50,13 @@ BOOST_AUTO_TEST_CASE(infex_and_postfix) {
     BOOST_CHECK_EQUAL(Rational_number(1, 2), a);
 }
 
-// BOOST_AUTO_TEST_CASE()
+BOOST_AUTO_TEST_CASE(simplification) {
+    Rational_number a(100, 200);
+    a.make_canonical();
+    BOOST_CHECK_EQUAL(1, a.get_numerator());
+    BOOST_CHECK_EQUAL(2, a.get_denominator());
+    Rational_number b(-12, 10);
+    b.make_canonical();
+    BOOST_CHECK_EQUAL(-6, b.get_numerator());
+    BOOST_CHECK_EQUAL(5, b.get_denominator());
+}
