@@ -5,13 +5,21 @@ project(sparse)
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 file(GLOB sources "${PROJECT_SOURCE_DIR}/src/*.cpp")
+add_library(sparse ${sources})
 
 # Testing stuff from here on
+set(TEST_NAMES
+    rational
+    complex
+)
+
 find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
-set(main_test "${PROJECT_SOURCE_DIR}/test/rational_test.cpp")
-add_executable(tests ${sources} ${main_test})
-target_link_libraries(tests Boost::unit_test_framework)
+foreach(TEST_NAME ${TEST_NAMES})
+    add_executable(${TEST_NAME} "${PROJECT_SOURCE_DIR}/test/${TEST_NAME}_test.cpp")
+    target_link_libraries(${TEST_NAME} Boost::unit_test_framework sparse)
+
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+endforeach()
 
 enable_testing()
-add_test(Rational tests)
