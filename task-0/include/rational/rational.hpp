@@ -17,13 +17,23 @@ class Rational_number {
     Rational_number operator-(const Rational_number &second) const;
     Rational_number operator*(const Rational_number &second) const;
     Rational_number operator/(const Rational_number &second) const;
+    Rational_number operator+(int64_t second) const;
+    Rational_number operator-(int64_t second) const;
+    Rational_number operator*(int64_t second) const;
+    Rational_number operator/(int64_t second) const;
 
     bool operator<(const Rational_number &second) const;
     bool operator>(const Rational_number &second) const;
-    bool operator<=(const Rational_number second) const;
+    bool operator<=(const Rational_number &second) const;
     bool operator>=(const Rational_number &second) const;
     bool operator==(const Rational_number &second) const;
     bool operator!=(const Rational_number &second) const;
+    bool operator<(int64_t second) const;
+    bool operator>(int64_t second) const;
+    bool operator<=(int64_t second) const;
+    bool operator>=(int64_t second) const;
+    bool operator==(int64_t second) const;
+    bool operator!=(int64_t second) const;
 
     Rational_number operator++(int);
     Rational_number operator--(int);
@@ -33,6 +43,10 @@ class Rational_number {
     Rational_number operator-=(Rational_number second);
     Rational_number operator*=(Rational_number second);
     Rational_number operator/=(Rational_number second);
+    Rational_number operator+=(int64_t second);
+    Rational_number operator-=(int64_t second);
+    Rational_number operator*=(int64_t second);
+    Rational_number operator/=(int64_t second);
 
     Rational_number &operator=(const Rational_number &second);
 

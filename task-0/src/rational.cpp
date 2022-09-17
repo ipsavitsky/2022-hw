@@ -90,7 +90,7 @@ bool Rational_number::operator>(const Rational_number &second) const {
     return numerator1 > numerator2;
 }
 
-bool Rational_number::operator<=(const Rational_number second) const {
+bool Rational_number::operator<=(const Rational_number &second) const {
     int64_t numerator1 = numerator * second.denominator;
     int64_t numerator2 = second.numerator * denominator;
     return numerator1 <= numerator2;
@@ -167,4 +167,64 @@ Rational_number Rational_number::round() {
 std::ostream &operator<<(std::ostream &os, const Rational_number &rn) {
     os << rn.numerator << "/" << rn.denominator;
     return os;
+}
+
+Rational_number Rational_number::operator+(int64_t second) const {
+    return Rational_number(numerator + denominator * second, denominator);
+}
+
+Rational_number Rational_number::operator-(int64_t second) const {
+    return Rational_number(numerator - denominator * second, denominator);
+}
+
+Rational_number Rational_number::operator*(int64_t second) const {
+    return Rational_number(numerator * second, denominator);
+}
+
+Rational_number Rational_number::operator/(int64_t second) const {
+    return Rational_number(numerator, denominator * second);
+}
+
+bool Rational_number::operator<(int64_t second) const {
+    return *this < Rational_number(second);
+}
+
+bool Rational_number::operator>(int64_t second) const {
+    return *this > Rational_number(second);
+}
+
+bool Rational_number::operator<=(int64_t second) const {
+    return *this <= Rational_number(second);
+}
+
+bool Rational_number::operator>=(int64_t second) const {
+    return *this >= Rational_number(second);
+}
+
+bool Rational_number::operator==(int64_t second) const {
+    return *this == Rational_number(second);
+}
+
+bool Rational_number::operator!=(int64_t second) const {
+    return *this != Rational_number(second);
+}
+
+Rational_number Rational_number::operator+=(int64_t second) {
+    this -> operator+=(Rational_number(second));
+    return *this;
+}
+
+Rational_number Rational_number::operator-=(int64_t second) {
+    this -> operator-=(Rational_number(second));
+    return *this;
+}
+
+Rational_number Rational_number::operator*=(int64_t second) {
+    this -> operator*=(Rational_number(second));
+    return *this;
+}
+
+Rational_number Rational_number::operator/=(int64_t second) {
+    this -> operator/=(Rational_number(second));
+    return *this;
 }
