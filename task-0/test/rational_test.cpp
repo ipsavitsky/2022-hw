@@ -1,6 +1,6 @@
 #define BOOST_TEST_MODULE Rational
-#include <boost/test/unit_test.hpp>
 #include "rational/rational.hpp"
+#include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_CASE(equality) {
     Rational_number a(1, 2);
@@ -59,4 +59,30 @@ BOOST_AUTO_TEST_CASE(simplification) {
     b.make_canonical();
     BOOST_CHECK_EQUAL(-6, b.get_numerator());
     BOOST_CHECK_EQUAL(5, b.get_denominator());
+}
+
+BOOST_AUTO_TEST_CASE(round_and_floor) {
+    Rational_number a(1, 2);
+    BOOST_CHECK_EQUAL(Rational_number(0, 1), a.floor());
+    Rational_number b(2, 3);
+    BOOST_CHECK_EQUAL(Rational_number(1, 1), b.round());
+    BOOST_CHECK_EQUAL(Rational_number(100, 3).round(), Rational_number(33, 1));
+}
+
+BOOST_AUTO_TEST_CASE(convertions_to_integral) {
+    Rational_number a(1000, 12);
+    BOOST_CHECK_EQUAL((int) a, 83);
+    BOOST_CHECK_EQUAL((long int) a, 83);
+    BOOST_CHECK_EQUAL((short) a, 83);
+}
+
+BOOST_AUTO_TEST_CASE(arithmetics_with_numbers) {
+    Rational_number a(1, 2);
+    a += 5;
+    BOOST_CHECK_EQUAL(Rational_number(11, 2), a);
+    a -= 3;
+    BOOST_CHECK_EQUAL(Rational_number(5, 2), a);
+    a = a * (int64_t)5;
+    BOOST_CHECK_EQUAL(Rational_number(25, 2), a);
+
 }

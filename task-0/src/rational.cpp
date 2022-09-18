@@ -160,7 +160,7 @@ Rational_number Rational_number::floor() {
 Rational_number Rational_number::round() {
     int64_t new_numerator = numerator - (numerator % denominator);
     if ((numerator % denominator) > (denominator / 2))
-        ++new_numerator;
+        new_numerator += denominator;
     return Rational_number(new_numerator, denominator);
 }
 
