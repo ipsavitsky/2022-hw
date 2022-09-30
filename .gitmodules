@@ -1,0 +1,111 @@
+[submodule "task-0/external/algorithm"]
+	path = task-0/external/algorithm
+	url = https://github.com/boostorg/algorithm.git
+[submodule "task-0/external/array"]
+	path = task-0/external/array
+	url = https://github.com/boostorg/array.git
+[submodule "task-0/external/assert"]
+	path = task-0/external/assert
+	url = https://github.com/boostorg/assert.git
+[submodule "task-0/external/bind"]
+	path = task-0/external/bind
+	url = https://github.com/boostorg/bind.git
+[submodule "task-0/external/concept_check"]
+	path = task-0/external/concept_check
+	url = https://github.com/boostorg/concept_check.git
+[submodule "task-0/external/config"]
+	path = task-0/external/config
+	url = https://github.com/boostorg/config.git
+[submodule "task-0/external/container_hash"]
+	path = task-0/external/container_hash
+	url = https://github.com/boostorg/container_hash.git
+[submodule "task-0/external/conversion"]
+	path = task-0/external/conversion
+	url = https://github.com/boostorg/conversion.git
+[submodule "task-0/external/core"]
+	path = task-0/external/core
+	url = https://github.com/boostorg/core.git
+[submodule "task-0/external/detail"]
+	path = task-0/external/detail
+	url = https://github.com/boostorg/detail.git
+[submodule "task-0/external/exception"]
+	path = task-0/external/exception
+	url = https://github.com/boostorg/exception.git
+[submodule "task-0/external/function"]
+	path = task-0/external/function
+	url = https://github.com/boostorg/function.git
+[submodule "task-0/external/function_types"]
+	path = task-0/external/function_types
+	url = https://github.com/boostorg/function_types.git
+[submodule "task-0/external/functional"]
+	path = task-0/external/functional
+	url = https://github.com/boostorg/functional.git
+[submodule "task-0/external/fusion"]
+	path = task-0/external/fusion
+	url = https://github.com/boostorg/fusion.git
+[submodule "task-0/external/integer"]
+	path = task-0/external/integer
+	url = https://github.com/boostorg/integer.git
+[submodule "task-0/external/io"]
+	path = task-0/external/io
+	url = https://github.com/boostorg/io.git
+[submodule "task-0/external/iterator"]
+	path = task-0/external/iterator
+	url = https://github.com/boostorg/iterator.git
+[submodule "task-0/external/move"]
+	path = task-0/external/move
+	url = https://github.com/boostorg/move.git
+[submodule "task-0/external/mp11"]
+	path = task-0/external/mp11
+	url = https://github.com/boostorg/mp11.git
+[submodule "task-0/external/mpl"]
+	path = task-0/external/mpl
+	url = https://github.com/boostorg/mpl.git
+[submodule "task-0/external/numeric_conversion"]
+	path = task-0/external/numeric_conversion
+	url = https://github.com/boostorg/numeric_conversion.git
+[submodule "task-0/external/optional"]
+	path = task-0/external/optional
+	url = https://github.com/boostorg/optional.git
+[submodule "task-0/external/predef"]
+	path = task-0/external/predef
+	url = https://github.com/boostorg/predef.git
+[submodule "task-0/external/preprocessor"]
+	path = task-0/external/preprocessor
+	url = https://github.com/boostorg/preprocessor.git
+[submodule "task-0/external/range"]
+	path = task-0/external/range
+	url = https://github.com/boostorg/range.git
+[submodule "task-0/external/regex"]
+	path = task-0/external/regex
+	url = https://github.com/boostorg/regex.git
+[submodule "task-0/external/smart_ptr"]
+	path = task-0/external/smart_ptr
+	url = https://github.com/boostorg/smart_ptr.git
+[submodule "task-0/external/static_assert"]
+	path = task-0/external/static_assert
+	url = https://github.com/boostorg/static_assert.git
+[submodule "task-0/external/test"]
+	path = task-0/external/test
+	url = https://github.com/boostorg/test.git
+[submodule "task-0/external/throw_exception"]
+	path = task-0/external/throw_exception
+	url = https://github.com/boostorg/throw_exception.git
+[submodule "task-0/external/tuple"]
+	path = task-0/external/tuple
+	url = https://github.com/boostorg/tuple.git
+[submodule "task-0/external/type_index"]
+	path = task-0/external/type_index
+	url = https://github.com/boostorg/type_index.git
+[submodule "task-0/external/type_traits"]
+	path = task-0/external/type_traits
+	url = https://github.com/boostorg/type_traits.git
+[submodule "task-0/external/typeof"]
+	path = task-0/external/typeof
+	url = https://github.com/boostorg/typeof.git
+[submodule "task-0/external/unordered"]
+	path = task-0/external/unordered
+	url = https://github.com/boostorg/unordered.git
+[submodule "task-0/external/utility"]
+	path = task-0/external/utility
+	url = https://github.com/boostorg/utility.git

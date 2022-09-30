@@ -2,7 +2,7 @@
 #define COMPLEX_HPP_
 #include <iostream>
 
-template <typename type_real = double, typename type_imag = type_imag> class Complex_number {
+template <typename type_real = double, typename type_imag = type_real> class Complex_number {
   private:
     type_real rl;
     type_imag im;

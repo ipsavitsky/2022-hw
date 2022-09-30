@@ -13,11 +13,13 @@ set(TEST_NAMES
     complex
 )
 
-find_package(Boost REQUIRED COMPONENTS unit_test_framework)
+# find_package(Boost REQUIRED COMPONENTS unit_test_framework)
+
+add_subdirectory(external)
 
 foreach(TEST_NAME ${TEST_NAMES})
     add_executable(${TEST_NAME} "${PROJECT_SOURCE_DIR}/test/${TEST_NAME}_test.cpp")
-    target_link_libraries(${TEST_NAME} Boost::unit_test_framework sparse)
+    target_link_libraries(${TEST_NAME} boost_unit_test_framework sparse)
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 endforeach()
