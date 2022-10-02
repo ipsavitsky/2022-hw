@@ -4,5 +4,6 @@
 #include <exception>
 
 class out_of_bounds_exception : public std::exception {};
+class incorrect_dimensions : public std::exception {};
 
 #endif

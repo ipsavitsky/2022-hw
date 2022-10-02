@@ -9,6 +9,10 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 file(GLOB sources "${PROJECT_SOURCE_DIR}/src/*.cpp")
 add_library(sparse ${sources})
 
+# set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+# set(CMAKE_CXX_CLANG_TIDY /usr/bin/clang-tidy; -header-filter=.*; -checks=*;)
+
+
 # Testing stuff from here on
 set(TEST_NAMES
     rational
