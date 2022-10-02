@@ -1,4 +1,5 @@
 #include "rational/rational.hpp"
+#include "rational/exceptions.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -7,7 +8,11 @@ Rational_number::Rational_number() : numerator(0), denominator(1) {}
 Rational_number::Rational_number(long int st) : numerator(st), denominator(1) {}
 
 Rational_number::Rational_number(int64_t numerator, uint64_t denominator)
-    : numerator(numerator), denominator(denominator) {}
+    : numerator(numerator), denominator(denominator) {
+    if (0 == denominator) {
+        throw zero_division_exception();
+    }
+}
 
 Rational_number
 Rational_number::operator*(const Rational_number &second) const {
@@ -30,6 +35,9 @@ Rational_number::operator/(const Rational_number &second) const {
 Rational_number Rational_number::operator/=(Rational_number second) {
     numerator *= second.denominator;
     denominator *= second.numerator;
+    if(0 == denominator) {
+        throw zero_division_exception();
+    }
     return *this;
 }
 
@@ -78,40 +86,16 @@ void Rational_number::make_canonical() {
     denominator /= gcd_val;
 }
 
-bool Rational_number::operator<(const Rational_number &second) const {
+std::strong_ordering Rational_number::operator<=>(const Rational_number &second) const {
     int64_t numerator1 = numerator * second.denominator;
     int64_t numerator2 = second.numerator * denominator;
-    return numerator1 < numerator2;
-}
-
-bool Rational_number::operator>(const Rational_number &second) const {
-    int64_t numerator1 = numerator * second.denominator;
-    int64_t numerator2 = second.numerator * denominator;
-    return numerator1 > numerator2;
-}
-
-bool Rational_number::operator<=(const Rational_number &second) const {
-    int64_t numerator1 = numerator * second.denominator;
-    int64_t numerator2 = second.numerator * denominator;
-    return numerator1 <= numerator2;
-}
-
-bool Rational_number::operator>=(const Rational_number &second) const {
-    int64_t numerator1 = numerator * second.denominator;
-    int64_t numerator2 = second.numerator * denominator;
-    return numerator1 >= numerator2;
+    return numerator1 <=> numerator2;
 }
 
 bool Rational_number::operator==(const Rational_number &second) const {
     int64_t numerator1 = numerator * second.denominator;
     int64_t numerator2 = second.numerator * denominator;
     return numerator1 == numerator2;
-}
-
-bool Rational_number::operator!=(const Rational_number &second) const {
-    int64_t numerator1 = numerator * second.denominator;
-    int64_t numerator2 = second.numerator * denominator;
-    return numerator1 != numerator2;
 }
 
 Rational_number &Rational_number::operator++() {
@@ -185,46 +169,50 @@ Rational_number Rational_number::operator/(int64_t second) const {
     return Rational_number(numerator, denominator * second);
 }
 
-bool Rational_number::operator<(int64_t second) const {
-    return *this < Rational_number(second);
+std::strong_ordering Rational_number::operator<=>(int64_t second) const {
+    return *this <=> Rational_number(second);
 }
 
-bool Rational_number::operator>(int64_t second) const {
-    return *this > Rational_number(second);
-}
+// bool Rational_number::operator<(int64_t second) const {
+//     return *this < Rational_number(second);
+// }
 
-bool Rational_number::operator<=(int64_t second) const {
-    return *this <= Rational_number(second);
-}
+// bool Rational_number::operator>(int64_t second) const {
+//     return *this > Rational_number(second);
+// }
 
-bool Rational_number::operator>=(int64_t second) const {
-    return *this >= Rational_number(second);
-}
+// bool Rational_number::operator<=(int64_t second) const {
+//     return *this <= Rational_number(second);
+// }
+
+// bool Rational_number::operator>=(int64_t second) const {
+//     return *this >= Rational_number(second);
+// }
 
 bool Rational_number::operator==(int64_t second) const {
     return *this == Rational_number(second);
 }
 
-bool Rational_number::operator!=(int64_t second) const {
-    return *this != Rational_number(second);
-}
+// bool Rational_number::operator!=(int64_t second) const {
+//     return *this != Rational_number(second);
+// }
 
 Rational_number Rational_number::operator+=(int64_t second) {
-    this -> operator+=(Rational_number(second));
+    this->operator+=(Rational_number(second));
     return *this;
 }
 
 Rational_number Rational_number::operator-=(int64_t second) {
-    this -> operator-=(Rational_number(second));
+    this->operator-=(Rational_number(second));
     return *this;
 }
 
 Rational_number Rational_number::operator*=(int64_t second) {
-    this -> operator*=(Rational_number(second));
+    this->operator*=(Rational_number(second));
     return *this;
 }
 
 Rational_number Rational_number::operator/=(int64_t second) {
-    this -> operator/=(Rational_number(second));
+    this->operator/=(Rational_number(second));
     return *this;
 }

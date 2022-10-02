@@ -103,41 +103,7 @@ class Rational_number {
      */
     Rational_number operator/(int64_t second) const;
 
-    /**
-     * @brief Overload of operator <. Compares two rational numbers.
-     *
-     * @param second Rational number to compare to
-     * @return true
-     * @return false
-     */
-    bool operator<(const Rational_number &second) const;
-
-    /**
-     * @brief Overload of operator >. Compares two rational numbers.
-     *
-     * @param second Rational number to compare to
-     * @return true
-     * @return false
-     */
-    bool operator>(const Rational_number &second) const;
-
-    /**
-     * @brief Overload of operator <=. Compares two rational numbers.
-     *
-     * @param second Rational number to compare to
-     * @return true
-     * @return false
-     */
-    bool operator<=(const Rational_number &second) const;
-
-    /**
-     * @brief Overload of operator >=. Compares two rational numbers.
-     *
-     * @param second Rational number to compare to
-     * @return true
-     * @return false
-     */
-    bool operator>=(const Rational_number &second) const;
+    std::strong_ordering operator<=>(const Rational_number &second) const;
 
     /**
      * @brief Overload of operator ==. Compares two rational numbers.
@@ -148,52 +114,46 @@ class Rational_number {
      */
     bool operator==(const Rational_number &second) const;
 
-    /**
-     * @brief Overload of operator !=. Compares two rational numbers.
-     *
-     * @param second Rational number to compare to
-     * @return true
-     * @return false
-     */
-    bool operator!=(const Rational_number &second) const;
+    std::strong_ordering operator<=>(int64_t second) const;
 
-    /**
-     * @brief Overload of operator <. Compares a rational number and an integer.
-     *
-     * @param second Integer to compare to
-     * @return true
-     * @return false
-     */
-    bool operator<(int64_t second) const;
 
-    /**
-     * @brief Overload of operator >. Compares a rational number and an integer.
-     *
-     * @param second Integer to compare to
-     * @return true
-     * @return false
-     */
-    bool operator>(int64_t second) const;
+    // /**
+    //  * @brief Overload of operator <. Compares a rational number and an integer.
+    //  *
+    //  * @param second Integer to compare to
+    //  * @return true
+    //  * @return false
+    //  */
+    // bool operator<(int64_t second) const;
 
-    /**
-     * @brief Overload of operator <=. Compares a rational number and an
-     * integer.
-     *
-     * @param second Integer to compare to
-     * @return true
-     * @return false
-     */
-    bool operator<=(int64_t second) const;
+    // /**
+    //  * @brief Overload of operator >. Compares a rational number and an integer.
+    //  *
+    //  * @param second Integer to compare to
+    //  * @return true
+    //  * @return false
+    //  */
+    // bool operator>(int64_t second) const;
 
-    /**
-     * @brief Overload of operator >=. Compares a rational number and an
-     * integer.
-     *
-     * @param second Integer to compare to
-     * @return true
-     * @return false
-     */
-    bool operator>=(int64_t second) const;
+    // /**
+    //  * @brief Overload of operator <=. Compares a rational number and an
+    //  * integer.
+    //  *
+    //  * @param second Integer to compare to
+    //  * @return true
+    //  * @return false
+    //  */
+    // bool operator<=(int64_t second) const;
+
+    // /**
+    //  * @brief Overload of operator >=. Compares a rational number and an
+    //  * integer.
+    //  *
+    //  * @param second Integer to compare to
+    //  * @return true
+    //  * @return false
+    //  */
+    // bool operator>=(int64_t second) const;
 
     /**
      * @brief Overload of operator ==. Compares a rational number and an
@@ -205,15 +165,15 @@ class Rational_number {
      */
     bool operator==(int64_t second) const;
 
-    /**
-     * @brief Overload of operator !=. Compares a rational number and an
-     * integer.
-     *
-     * @param second Integer to compare to
-     * @return true
-     * @return false
-     */
-    bool operator!=(int64_t second) const;
+    // /**
+    //  * @brief Overload of operator !=. Compares a rational number and an
+    //  * integer.
+    //  *
+    //  * @param second Integer to compare to
+    //  * @return true
+    //  * @return false
+    //  */
+    // bool operator!=(int64_t second) const;
 
     /**
      * @brief Overload of postfix iterator ++. Increments a rational number.
@@ -320,21 +280,21 @@ class Rational_number {
      *
      * @return int
      */
-    operator int() const;
+    explicit operator int() const;
 
     /**
      * @brief Overload of long int cast
      *
      * @return long int
      */
-    operator long int() const;
+    explicit operator long int() const;
 
     /**
      * @brief Overload of short cast
      *
      * @return short
      */
-    operator short() const;
+    explicit operator short() const;
 
     /**
      * @brief Make a Rational number canonical
