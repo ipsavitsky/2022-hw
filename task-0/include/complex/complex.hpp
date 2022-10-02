@@ -1,8 +1,13 @@
 #ifndef COMPLEX_HPP_
 #define COMPLEX_HPP_
+#include <concepts>
 #include <iostream>
 
-template <typename type_real = double, typename type_imag = type_real> class Complex_number {
+template <typename T>
+concept num_like = std::regular<T> && std::three_way_comparable<T>;
+
+template <num_like type_real = double, num_like type_imag = type_real>
+class Complex_number {
   private:
     type_real rl;
     type_imag im;
@@ -14,12 +19,16 @@ template <typename type_real = double, typename type_imag = type_real> class Com
 
     Complex_number<type_real, type_imag>
     operator+(const Complex_number<type_real, type_imag> &other) const {
-        return Complex_number(rl + other.rl, im + other.im);
+        Complex_number<type_real, type_imag> res = *this;
+        res += other;
+        return res;
     }
 
     Complex_number<type_real, type_imag>
     operator-(const Complex_number<type_real, type_imag> &other) const {
-        return Complex_number(rl - other.rl, im - other.im);
+        Complex_number<type_real, type_imag> res = *this;
+        res -= other;
+        return res;
     }
 
     Complex_number<type_real, type_imag>
@@ -38,8 +47,9 @@ template <typename type_real = double, typename type_imag = type_real> class Com
 
     Complex_number<type_real, type_imag>
     operator*(const Complex_number<type_real, type_imag> &other) const {
-        return Complex_number(rl * other.rl - im * other.im,
-                              rl * other.im + im * other.rl);
+        Complex_number<type_real, type_imag> res = *this;
+        res *= other;
+        return res;
     }
 
     Complex_number<type_real, type_imag>
@@ -51,9 +61,9 @@ template <typename type_real = double, typename type_imag = type_real> class Com
 
     Complex_number<type_real, type_imag>
     operator/(const Complex_number<type_real, type_imag> &other) const {
-        auto denominator = other.rl * other.rl + other.im * other.im;
-        return Complex_number((rl * other.rl + im * other.im) / denominator,
-                              (other.rl * im - rl * other.im) / denominator);
+        Complex_number<type_real, type_imag> res = *this;
+        res /= other;
+        return res;
     }
 
     Complex_number<type_real, type_imag>
@@ -86,7 +96,8 @@ template <typename type_real = double, typename type_imag = type_real> class Com
         return res;
     }
 
-    std::strong_ordering operator<=>(const Complex_number<type_real, type_imag> &other) const {
+    std::strong_ordering
+    operator<=>(const Complex_number<type_real, type_imag> &other) const {
         return calc_absolute_sq() <=> other.calc_absolute_sq();
     }
 

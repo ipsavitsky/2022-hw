@@ -13,6 +13,7 @@ add_library(sparse ${sources})
 set(TEST_NAMES
     rational
     complex
+    vector
 )
 
 # find_package(Boost REQUIRED COMPONENTS unit_test_framework)

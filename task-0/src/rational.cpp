@@ -16,8 +16,9 @@ Rational_number::Rational_number(int64_t numerator, uint64_t denominator)
 
 Rational_number
 Rational_number::operator*(const Rational_number &second) const {
-    return Rational_number(numerator * second.numerator,
-                           denominator * second.denominator);
+    Rational_number res = *this;
+    res *= second;
+    return res;
 }
 
 Rational_number Rational_number::operator*=(Rational_number second) {
@@ -28,8 +29,9 @@ Rational_number Rational_number::operator*=(Rational_number second) {
 
 Rational_number
 Rational_number::operator/(const Rational_number &second) const {
-    return Rational_number(numerator * second.denominator,
-                           denominator * second.numerator);
+    Rational_number res = *this;
+    res /= second;
+    return res;
 }
 
 Rational_number Rational_number::operator/=(Rational_number second) {
@@ -43,9 +45,9 @@ Rational_number Rational_number::operator/=(Rational_number second) {
 
 Rational_number
 Rational_number::operator+(const Rational_number &second) const {
-    return Rational_number(numerator * second.denominator +
-                               second.numerator * denominator,
-                           denominator * second.denominator);
+    Rational_number res = *this;
+    res += second;
+    return res;
 }
 
 Rational_number Rational_number::operator+=(Rational_number second) {
@@ -56,9 +58,9 @@ Rational_number Rational_number::operator+=(Rational_number second) {
 
 Rational_number
 Rational_number::operator-(const Rational_number &second) const {
-    return Rational_number(numerator * second.denominator -
-                               second.numerator * denominator,
-                           denominator * second.denominator);
+    Rational_number res = *this;
+    res -= second;
+    return res;
 }
 
 Rational_number Rational_number::operator-=(Rational_number second) {
@@ -155,19 +157,27 @@ std::ostream &operator<<(std::ostream &os, const Rational_number &rn) {
 }
 
 Rational_number Rational_number::operator+(int64_t second) const {
-    return Rational_number(numerator + denominator * second, denominator);
+    Rational_number res = *this;
+    res += second;
+    return res;
 }
 
 Rational_number Rational_number::operator-(int64_t second) const {
-    return Rational_number(numerator - denominator * second, denominator);
+    Rational_number res = *this;
+    res -= second;
+    return res;
 }
 
 Rational_number Rational_number::operator*(int64_t second) const {
-    return Rational_number(numerator * second, denominator);
+    Rational_number res = *this;
+    res *= second;
+    return res;
 }
 
 Rational_number Rational_number::operator/(int64_t second) const {
-    return Rational_number(numerator, denominator * second);
+    Rational_number res = *this;
+    res *= second;
+    return res;
 }
 
 std::strong_ordering Rational_number::operator<=>(int64_t second) const {
