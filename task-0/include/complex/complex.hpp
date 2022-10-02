@@ -86,28 +86,12 @@ template <typename type_real = double, typename type_imag = type_real> class Com
         return res;
     }
 
+    std::strong_ordering operator<=>(const Complex_number<type_real, type_imag> &other) const {
+        return calc_absolute_sq() <=> other.calc_absolute_sq();
+    }
+
     bool operator==(const Complex_number<type_real, type_imag> &other) const {
         return (rl == other.rl) && (im == other.im);
-    }
-
-    bool operator!=(const Complex_number<type_real, type_imag> &other) const {
-        return (rl != other.rl) || (im != other.im);
-    }
-
-    bool operator<(const Complex_number<type_real, type_imag> &other) const {
-        return calc_absolute_sq() < other.calc_absolute_sq();
-    }
-
-    bool operator>(const Complex_number<type_real, type_imag> &other) const {
-        return calc_absolute_sq() > other.calc_absolute_sq();
-    }
-
-    bool operator<=(const Complex_number<type_real, type_imag> &other) const {
-        return calc_absolute_sq() <= other.calc_absolute_sq();
-    }
-
-    bool operator>=(const Complex_number<type_real, type_imag> &other) const {
-        return calc_absolute_sq() >= other.calc_absolute_sq();
     }
 
     template <typename type_r, typename type_i>
