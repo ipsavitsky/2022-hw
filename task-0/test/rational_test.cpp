@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE Rational
-#include "rational/exceptions.hpp"
 #include "rational/rational.hpp"
 #include <boost/test/unit_test.hpp>
+#include "rational/exceptions.hpp"
 
 BOOST_AUTO_TEST_CASE(equality) {
     Rational_number a(1, 2);

@@ -1,7 +1,7 @@
 #include "rational/rational.hpp"
-#include "rational/exceptions.hpp"
 #include <cmath>
 #include <iostream>
+#include "rational/exceptions.hpp"
 
 Rational_number::Rational_number() : numerator(0), denominator(1) {}
 
@@ -14,8 +14,8 @@ Rational_number::Rational_number(int64_t numerator, uint64_t denominator)
     }
 }
 
-Rational_number
-Rational_number::operator*(const Rational_number &second) const {
+Rational_number Rational_number::operator*(
+    const Rational_number& second) const {
     Rational_number res = *this;
     res *= second;
     return res;
@@ -27,8 +27,8 @@ Rational_number Rational_number::operator*=(Rational_number second) {
     return *this;
 }
 
-Rational_number
-Rational_number::operator/(const Rational_number &second) const {
+Rational_number Rational_number::operator/(
+    const Rational_number& second) const {
     Rational_number res = *this;
     res /= second;
     return res;
@@ -43,8 +43,8 @@ Rational_number Rational_number::operator/=(Rational_number second) {
     return *this;
 }
 
-Rational_number
-Rational_number::operator+(const Rational_number &second) const {
+Rational_number Rational_number::operator+(
+    const Rational_number& second) const {
     Rational_number res = *this;
     res += second;
     return res;
@@ -56,8 +56,8 @@ Rational_number Rational_number::operator+=(Rational_number second) {
     return *this;
 }
 
-Rational_number
-Rational_number::operator-(const Rational_number &second) const {
+Rational_number Rational_number::operator-(
+    const Rational_number& second) const {
     Rational_number res = *this;
     res -= second;
     return res;
@@ -88,20 +88,20 @@ void Rational_number::make_canonical() {
     denominator /= gcd_val;
 }
 
-std::strong_ordering
-Rational_number::operator<=>(const Rational_number &second) const {
+std::strong_ordering Rational_number::operator<=>(
+    const Rational_number& second) const {
     int64_t numerator1 = numerator * second.denominator;
     int64_t numerator2 = second.numerator * denominator;
     return numerator1 <=> numerator2;
 }
 
-bool Rational_number::operator==(const Rational_number &second) const {
+bool Rational_number::operator==(const Rational_number& second) const {
     int64_t numerator1 = numerator * second.denominator;
     int64_t numerator2 = second.numerator * denominator;
     return numerator1 == numerator2;
 }
 
-Rational_number &Rational_number::operator++() {
+Rational_number& Rational_number::operator++() {
     numerator += denominator;
     return *this;
 }
@@ -112,7 +112,7 @@ Rational_number Rational_number::operator++(int) {
     return prev;
 }
 
-Rational_number &Rational_number::operator--() {
+Rational_number& Rational_number::operator--() {
     numerator -= denominator;
     return *this;
 }
@@ -123,17 +123,27 @@ Rational_number Rational_number::operator--(int) {
     return prev;
 }
 
-int64_t Rational_number::get_numerator() const { return numerator; }
+int64_t Rational_number::get_numerator() const {
+    return numerator;
+}
 
-uint64_t Rational_number::get_denominator() const { return denominator; }
+uint64_t Rational_number::get_denominator() const {
+    return denominator;
+}
 
-Rational_number::operator int() const { return numerator / denominator; }
+Rational_number::operator int() const {
+    return numerator / denominator;
+}
 
-Rational_number::operator long int() const { return numerator / denominator; }
+Rational_number::operator long int() const {
+    return numerator / denominator;
+}
 
-Rational_number::operator short() const { return numerator / denominator; }
+Rational_number::operator short() const {
+    return numerator / denominator;
+}
 
-Rational_number &Rational_number::operator=(const Rational_number &second) {
+Rational_number& Rational_number::operator=(const Rational_number& second) {
     numerator = second.numerator;
     denominator = second.denominator;
     return *this;
@@ -151,7 +161,7 @@ Rational_number Rational_number::round() {
     return Rational_number(new_numerator, denominator);
 }
 
-std::ostream &operator<<(std::ostream &os, const Rational_number &rn) {
+std::ostream& operator<<(std::ostream& os, const Rational_number& rn) {
     os << rn.numerator << "/" << rn.denominator;
     return os;
 }

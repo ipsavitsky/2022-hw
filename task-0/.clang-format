@@ -1,2 +1,2 @@
-BasedOnStyle: llvm
+BasedOnStyle: chromium
 IndentWidth: 4

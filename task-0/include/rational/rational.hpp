@@ -13,7 +13,7 @@ class Rational_number {
     int64_t numerator;
     uint64_t denominator;
 
-  public:
+   public:
     /**
      * @brief Construct a new Rational_number object
      *
@@ -41,7 +41,7 @@ class Rational_number {
      * @param second Rational number to sum with
      * @return Rational_number
      */
-    Rational_number operator+(const Rational_number &second) const;
+    Rational_number operator+(const Rational_number& second) const;
 
     /**
      * @brief Overload of operator -. Returns substract of two rational numbers.
@@ -49,7 +49,7 @@ class Rational_number {
      * @param second Rational number to substract
      * @return Rational_number
      */
-    Rational_number operator-(const Rational_number &second) const;
+    Rational_number operator-(const Rational_number& second) const;
 
     /**
      * @brief Overload of operator *. Returns product of two rational numbers.
@@ -57,7 +57,7 @@ class Rational_number {
      * @param second Rational number to multiply with
      * @return Rational_number
      */
-    Rational_number operator*(const Rational_number &second) const;
+    Rational_number operator*(const Rational_number& second) const;
 
     /**
      * @brief Overload of operator /. Returns sum of two rational numbers.
@@ -65,7 +65,7 @@ class Rational_number {
      * @param second Rational number to divide by
      * @return Rational_number
      */
-    Rational_number operator/(const Rational_number &second) const;
+    Rational_number operator/(const Rational_number& second) const;
 
     /**
      * @brief Overload of operator +. Returns sum of a rational number and an
@@ -103,7 +103,7 @@ class Rational_number {
      */
     Rational_number operator/(int64_t second) const;
 
-    std::strong_ordering operator<=>(const Rational_number &second) const;
+    std::strong_ordering operator<=>(const Rational_number& second) const;
 
     /**
      * @brief Overload of operator ==. Compares two rational numbers.
@@ -112,7 +112,7 @@ class Rational_number {
      * @return true
      * @return false
      */
-    bool operator==(const Rational_number &second) const;
+    bool operator==(const Rational_number& second) const;
 
     std::strong_ordering operator<=>(int64_t second) const;
 
@@ -145,14 +145,14 @@ class Rational_number {
      *
      * @return Rational_number&
      */
-    Rational_number &operator++();
+    Rational_number& operator++();
 
     /**
      * @brief Overload of prefix operator --. Decrements a rational number.
      *
      * @return Rational_number&
      */
-    Rational_number &operator--();
+    Rational_number& operator--();
 
     /**
      * @brief Overload of operator +=.
@@ -224,7 +224,7 @@ class Rational_number {
      * @param second Rational number to assign.
      * @return Rational_number&
      */
-    Rational_number &operator=(const Rational_number &second);
+    Rational_number& operator=(const Rational_number& second);
 
     /**
      * @brief Overload of int cast
@@ -282,8 +282,8 @@ class Rational_number {
      * @return uint64_t
      */
     uint64_t get_denominator() const;
-    friend std::ostream &operator<<(std::ostream &os,
-                                    const Rational_number &rn);
+    friend std::ostream& operator<<(std::ostream& os,
+                                    const Rational_number& rn);
 };
 
 #endif
