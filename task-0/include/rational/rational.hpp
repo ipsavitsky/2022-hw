@@ -5,8 +5,8 @@
 #include <iostream>
 
 /**
- * @brief 
- * 
+ * @brief
+ *
  */
 class Rational_number {
     int64_t gcd(int64_t frst, int64_t scnd);
@@ -116,45 +116,6 @@ class Rational_number {
 
     std::strong_ordering operator<=>(int64_t second) const;
 
-
-    // /**
-    //  * @brief Overload of operator <. Compares a rational number and an integer.
-    //  *
-    //  * @param second Integer to compare to
-    //  * @return true
-    //  * @return false
-    //  */
-    // bool operator<(int64_t second) const;
-
-    // /**
-    //  * @brief Overload of operator >. Compares a rational number and an integer.
-    //  *
-    //  * @param second Integer to compare to
-    //  * @return true
-    //  * @return false
-    //  */
-    // bool operator>(int64_t second) const;
-
-    // /**
-    //  * @brief Overload of operator <=. Compares a rational number and an
-    //  * integer.
-    //  *
-    //  * @param second Integer to compare to
-    //  * @return true
-    //  * @return false
-    //  */
-    // bool operator<=(int64_t second) const;
-
-    // /**
-    //  * @brief Overload of operator >=. Compares a rational number and an
-    //  * integer.
-    //  *
-    //  * @param second Integer to compare to
-    //  * @return true
-    //  * @return false
-    //  */
-    // bool operator>=(int64_t second) const;
-
     /**
      * @brief Overload of operator ==. Compares a rational number and an
      * integer.
@@ -164,16 +125,6 @@ class Rational_number {
      * @return false
      */
     bool operator==(int64_t second) const;
-
-    // /**
-    //  * @brief Overload of operator !=. Compares a rational number and an
-    //  * integer.
-    //  *
-    //  * @param second Integer to compare to
-    //  * @return true
-    //  * @return false
-    //  */
-    // bool operator!=(int64_t second) const;
 
     /**
      * @brief Overload of postfix iterator ++. Increments a rational number.
