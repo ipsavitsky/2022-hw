@@ -13,6 +13,7 @@ class solution {
 
    public:
     solution(std::size_t pr_am, std::size_t tk_am);
+    solution(const solution &other) = default;
 
     using task_t = std::size_t;
     using proc_t = std::size_t;
@@ -26,6 +27,8 @@ class solution {
     virtual void remove_task(task_t task_to_remove) = 0;
     virtual void add_task(task_t task_to_add, proc_t proc_to_add_to) = 0;
     virtual solution* clone() = 0;
+
+    virtual ~solution() {};
 };
 
 class time_diagram : public solution {
@@ -34,6 +37,7 @@ class time_diagram : public solution {
 
    public:
     time_diagram(std::size_t pr_am, std::size_t tk_am);
+    time_diagram(const time_diagram &other) = default;
 
     void generate_approximation();
     uint64_t calculate_target_function();

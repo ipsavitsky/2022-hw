@@ -20,9 +20,10 @@ time_diagram::time_diagram(std::size_t pr_am, std::size_t tk_am)
     : solution(pr_am, tk_am) {}
 
 void time_diagram::generate_approximation() {
+    std::random_device r;
     auto proc_generator =
         std::bind(std::uniform_int_distribution<>(0, proc_amount - 1),
-                  std::default_random_engine());
+                  std::default_random_engine(r()));
     for (task_t i = 0; i < task_amount; ++i) {
         storage[i] = proc_generator();
     }
