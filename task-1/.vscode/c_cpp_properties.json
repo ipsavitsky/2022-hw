@@ -4,13 +4,14 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/include/scheduling",
                 "${workspaceFolder}/include/scheduling"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
-            "intelliSenseMode": "linux-clang-x64",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "cStandard": "c17",
+            "cppStandard": "c++20"
         }
     ],
     "version": 4

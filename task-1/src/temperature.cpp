@@ -1,4 +1,4 @@
-#include "temperature.hpp"
+#include "scheduling/temperature.hpp"
 #include <cmath>
 
 temperature::temperature(double temp) : base_temp(temp), cur_temp(temp) {}
