@@ -13,10 +13,10 @@ annealing::annealing(solution* res,
 
 void annealing::anneal() {
     auto rand_oper =
-        std::bind(std::uniform_int_distribution<>(0, operations.size()),
+        std::bind(std::uniform_int_distribution<>(0, operations.size() - 1),
                   std::default_random_engine());
 
-    auto annealing_prob = std::bind(std::uniform_int_distribution<>(0, 100),
+    auto annealing_prob = std::bind(std::uniform_int_distribution<>(0, 100 - 1),
                                     std::default_random_engine());
 
     std::size_t iteration = 0;
@@ -46,4 +46,8 @@ void annealing::anneal() {
         t->eval(iteration);
         ++iteration;
     }
+}
+
+solution* annealing::get_solution() {
+    return cur_best->clone();
 }

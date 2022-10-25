@@ -17,6 +17,8 @@ class annealing {
     annealing(solution* res, std::vector<operation*> opers, temperature* temp);
 
     void anneal();
+
+    solution* get_solution();
 };
 
 #endif

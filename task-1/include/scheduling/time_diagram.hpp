@@ -28,7 +28,7 @@ class solution {
     virtual solution* clone() = 0;
 };
 
-class time_diagram : solution {
+class time_diagram : public solution {
    private:
     std::unordered_map<task_t, proc_t> storage;
 
@@ -40,6 +40,7 @@ class time_diagram : solution {
     void remove_task(task_t task_to_remove);
     void add_task(task_t task_to_add, proc_t proc_to_add_to);
     solution* clone();
+
     std::string stringify();
 };
 

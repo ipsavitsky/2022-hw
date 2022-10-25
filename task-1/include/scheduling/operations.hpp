@@ -8,7 +8,7 @@ class operation {
     virtual solution* eval(solution* sol_to_change) = 0;
 };
 
-class change_processor : operation {
+class change_processor : public operation {
    public:
     solution* eval(solution* sol_to_change);
 };
