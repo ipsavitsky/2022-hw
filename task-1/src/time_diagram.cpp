@@ -3,7 +3,6 @@
 #include <functional>
 #include <random>
 #include <sstream>
-#include <vector>
 
 solution::solution(std::size_t pr_am, std::size_t tk_am)
     : proc_amount(pr_am), task_amount(tk_am) {}
@@ -16,8 +15,10 @@ std::size_t solution::get_task_amount() {
     return task_amount;
 }
 
-time_diagram::time_diagram(std::size_t pr_am, std::size_t tk_am)
-    : solution(pr_am, tk_am) {}
+time_diagram::time_diagram(std::size_t pr_am,
+                           std::size_t tk_am,
+                           const std::vector<std::size_t>& times)
+    : solution(pr_am, tk_am), times_vec(times) {}
 
 void time_diagram::generate_approximation() {
     std::random_device r;
@@ -33,7 +34,7 @@ uint64_t time_diagram::calculate_target_function() {
     std::vector<uint64_t> sums(proc_amount);
     for (auto binding = storage.begin(); binding != storage.end(); ++binding) {
         // TODO aaaaaaaaaaaaaaaaaaa
-        sums[binding->second] += binding->first;
+        sums[binding->second] += times_vec[binding->first];
     }
     return *std::max_element(sums.begin(), sums.end());
 }

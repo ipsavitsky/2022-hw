@@ -17,7 +17,7 @@ solution* change_processor::eval(solution* sol_to_change) {
     new_solution->remove_task(task_to_move);
     solution::proc_t proc_to_move = get_proc();
     new_solution->add_task(task_to_move, proc_to_move);
-    std::cout << "moved task " << task_to_move << " to proc " << proc_to_move
-              << std::endl;
+    // std::cout << "moved task " << task_to_move << " to proc " << proc_to_move
+    //           << std::endl;
     return new_solution;
 }

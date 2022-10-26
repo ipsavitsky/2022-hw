@@ -12,6 +12,8 @@ class temperature {
     double get_temp();
 
     virtual void eval(std::size_t iteration) = 0;
+
+    virtual ~temperature(){};
 };
 
 class boltzmann_temp : public temperature {

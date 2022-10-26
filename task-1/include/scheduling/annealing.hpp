@@ -19,6 +19,8 @@ class annealing {
     void anneal();
 
     solution* get_solution();
+
+    ~annealing();
 };
 
 #endif

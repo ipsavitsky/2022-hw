@@ -23,26 +23,28 @@ void annealing::anneal() {
 
     std::size_t iteration = 0;
     std::size_t useless_iteration = 0;
+    std::size_t temp_it = 100;
     while (true) {
-        ++iteration;
-        t->eval(iteration);
-        operation* op = operations[rand_oper()];
-        solution* new_solution = op->eval(cur_best);
-        std::size_t new_target_func = new_solution->calculate_target_function();
-        if (new_target_func < best_target_func) {
-            std::swap(cur_best, new_solution);
-            delete new_solution;
-            best_target_func = new_target_func;
-            useless_iteration = 0;
-        } else {
-            ++useless_iteration;
-            double temp_cutoff =
-                std::exp(static_cast<double>(new_target_func - best_target_func) / t->get_temp());
-            if (annealing_prob() <= temp_cutoff) {
-                std::cout << "but hit prob))" << std::endl;
+        for (uint64_t i = 0; i < temp_it; ++i) {
+            operation* op = operations[rand_oper()];
+            solution* new_solution = op->eval(cur_best);
+            std::size_t new_target_func =
+                new_solution->calculate_target_function();
+            int64_t f_delta = new_target_func - best_target_func;
+            if (f_delta < 0) {
                 std::swap(cur_best, new_solution);
                 delete new_solution;
                 best_target_func = new_target_func;
+                useless_iteration = 0;
+            } else {
+                ++useless_iteration;
+                double temp_cutoff =
+                    std::exp(static_cast<double>(-f_delta) / t->get_temp());
+                if (annealing_prob() <= temp_cutoff) {
+                    std::swap(cur_best, new_solution);
+                    delete new_solution;
+                    best_target_func = new_target_func;
+                }
             }
         }
 
@@ -50,10 +52,15 @@ void annealing::anneal() {
             break;
         }
 
-        std::cout << dynamic_cast<time_diagram*>(cur_best)->stringify();
+        ++iteration;
+        t->eval(iteration);
     }
 }
 
 solution* annealing::get_solution() {
     return cur_best->clone();
+}
+
+annealing::~annealing() {
+    delete cur_best;
 }
