@@ -33,7 +33,6 @@ void time_diagram::generate_approximation() {
 uint64_t time_diagram::calculate_target_function() {
     std::vector<uint64_t> sums(proc_amount);
     for (auto binding = storage.begin(); binding != storage.end(); ++binding) {
-        // TODO aaaaaaaaaaaaaaaaaaa
         sums[binding->second] += times_vec[binding->first];
     }
     return *std::max_element(sums.begin(), sums.end());
@@ -47,8 +46,8 @@ void time_diagram::add_task(task_t task_to_add, proc_t proc_to_add_to) {
     storage[task_to_add] = proc_to_add_to;
 }
 
-solution* time_diagram::clone() {
-    return new time_diagram(*this);
+std::shared_ptr<solution> time_diagram::clone() {
+    return std::shared_ptr<solution>{new time_diagram(*this)};
 }
 
 std::string time_diagram::stringify() {

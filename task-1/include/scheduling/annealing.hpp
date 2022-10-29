@@ -8,19 +8,19 @@
 
 class annealing {
    private:
-    std::vector<operation*> operations;
-    temperature* t;
-    solution* cur_best;
+    std::vector<std::shared_ptr<operation>> operations;
+    std::shared_ptr<temperature> t;
+    std::shared_ptr<solution> cur_best;
     std::size_t best_target_func;
 
    public:
-    annealing(solution* res, std::vector<operation*> opers, temperature* temp);
+    annealing(std::shared_ptr<solution> res,
+              std::vector<std::shared_ptr<operation>> opers,
+              std::shared_ptr<temperature> temp);
 
     void anneal();
 
-    solution* get_solution();
-
-    ~annealing();
+    std::shared_ptr<solution> get_solution();
 };
 
 #endif

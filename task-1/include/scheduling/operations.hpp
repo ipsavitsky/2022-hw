@@ -5,12 +5,14 @@
 
 class operation {
    public:
-    virtual solution* eval(solution* sol_to_change) = 0;
+    virtual std::shared_ptr<solution> eval(
+        std::shared_ptr<solution> sol_to_change) = 0;
+    virtual ~operation(){};
 };
 
 class change_processor : public operation {
    public:
-    solution* eval(solution* sol_to_change);
+    std::shared_ptr<solution> eval(std::shared_ptr<solution> sol_to_change);
 };
 
 #endif

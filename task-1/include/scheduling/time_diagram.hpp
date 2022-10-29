@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -27,7 +28,7 @@ class solution {
     virtual uint64_t calculate_target_function() = 0;
     virtual void remove_task(task_t task_to_remove) = 0;
     virtual void add_task(task_t task_to_add, proc_t proc_to_add_to) = 0;
-    virtual solution* clone() = 0;
+    virtual std::shared_ptr<solution> clone() = 0;
 
     virtual ~solution(){};
 };
@@ -47,7 +48,7 @@ class time_diagram : public solution {
     uint64_t calculate_target_function();
     void remove_task(task_t task_to_remove);
     void add_task(task_t task_to_add, proc_t proc_to_add_to);
-    solution* clone();
+    std::shared_ptr<solution> clone();
 
     std::string stringify();
 };
