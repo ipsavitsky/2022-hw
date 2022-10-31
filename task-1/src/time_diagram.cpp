@@ -30,11 +30,26 @@ void time_diagram::generate_approximation() {
     }
 }
 
-uint64_t time_diagram::calculate_target_function() {
-    std::vector<uint64_t> sums(proc_amount);
+std::vector<uint64_t> time_diagram::get_proc_loads() {
+    std::vector<uint64_t> sums(proc_amount, 0);
     for (auto binding = storage.begin(); binding != storage.end(); ++binding) {
         sums[binding->second] += times_vec[binding->first];
     }
+    return sums;
+}
+
+std::vector<solution::task_t> time_diagram::get_tasks_on_proc(proc_t proc) {
+    std::vector<task_t> res;
+    for (auto binding : storage) {
+        if (binding.second == proc) {
+            res.push_back(binding.first);
+        }
+    }
+    return res;
+}
+
+uint64_t time_diagram::calculate_target_function() {
+    std::vector<uint64_t> sums = get_proc_loads();
     return *std::max_element(sums.begin(), sums.end());
 }
 

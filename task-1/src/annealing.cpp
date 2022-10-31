@@ -10,6 +10,7 @@ annealing::annealing(std::shared_ptr<solution> res,
     : operations(opers), t(temp), cur_best(res) {
     cur_best->generate_approximation();
     std::cout << dynamic_cast<time_diagram*>(cur_best.get())->stringify();
+    std::cout << cur_best->calculate_target_function() << std::endl;
     best_target_func = cur_best->calculate_target_function();
 }
 
@@ -24,7 +25,7 @@ void annealing::anneal() {
 
     std::size_t iteration = 0;
     std::size_t useless_iteration = 0;
-    std::size_t temp_it = 100;
+    std::size_t temp_it = 5;
     while (true) {
         for (uint64_t i = 0; i < temp_it; ++i) {
             std::shared_ptr<operation> op = operations[rand_oper()];
@@ -33,14 +34,17 @@ void annealing::anneal() {
                 new_solution->calculate_target_function();
             int64_t f_delta = new_target_func - best_target_func;
             if (f_delta < 0) {
+                // std::cout << '1' << std::endl;
                 std::swap(cur_best, new_solution);
                 best_target_func = new_target_func;
                 useless_iteration = 0;
             } else {
+                // std::cout << '2' << std::endl;
                 ++useless_iteration;
                 double temp_cutoff =
                     std::exp(static_cast<double>(-f_delta) / t->get_temp());
-                if (annealing_prob() <= temp_cutoff) {
+                double test = annealing_prob();
+                if (test <= temp_cutoff) {
                     std::swap(cur_best, new_solution);
                     best_target_func = new_target_func;
                 }
@@ -49,6 +53,12 @@ void annealing::anneal() {
 
         if (useless_iteration > 100) {
             break;
+        }
+
+        if (iteration % 10000) {
+            std::cout << "cur_targ_func = "
+                      << cur_best->calculate_target_function() << std::endl;
+                    //   << "temp_cache = " << temp_cache << std::endl;
         }
 
         ++iteration;

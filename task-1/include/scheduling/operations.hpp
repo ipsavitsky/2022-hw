@@ -15,4 +15,9 @@ class change_processor : public operation {
     std::shared_ptr<solution> eval(std::shared_ptr<solution> sol_to_change);
 };
 
+class unload_processor : public operation {
+   public:
+    std::shared_ptr<solution> eval(std::shared_ptr<solution> sol_to_change);
+};
+
 #endif

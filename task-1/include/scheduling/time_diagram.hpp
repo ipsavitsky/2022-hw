@@ -26,6 +26,8 @@ class solution {
 
     virtual void generate_approximation() = 0;
     virtual uint64_t calculate_target_function() = 0;
+    virtual std::vector<uint64_t> get_proc_loads() = 0;
+    virtual std::vector<task_t> get_tasks_on_proc(proc_t proc) = 0;
     virtual void remove_task(task_t task_to_remove) = 0;
     virtual void add_task(task_t task_to_add, proc_t proc_to_add_to) = 0;
     virtual std::shared_ptr<solution> clone() = 0;
@@ -46,6 +48,8 @@ class time_diagram : public solution {
 
     void generate_approximation();
     uint64_t calculate_target_function();
+    std::vector<uint64_t> get_proc_loads();
+    std::vector<task_t> get_tasks_on_proc(proc_t proc);
     void remove_task(task_t task_to_remove);
     void add_task(task_t task_to_add, proc_t proc_to_add_to);
     std::shared_ptr<solution> clone();
