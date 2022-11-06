@@ -13,6 +13,8 @@ class annealing {
     std::shared_ptr<solution> cur_best;
     std::size_t best_target_func;
 
+    void run_routine();
+
    public:
     annealing(std::shared_ptr<solution> res,
               std::vector<std::shared_ptr<operation>> opers,
