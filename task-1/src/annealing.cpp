@@ -4,9 +4,12 @@
 #include <sys/types.h>
 #include <sys/un.h>
 #include <sys/wait.h>
+#include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <random>
+
+void ctchr(int sig) {}
 
 annealing::annealing(std::shared_ptr<solution> res,
                      std::vector<std::shared_ptr<operation>> opers,
@@ -19,6 +22,10 @@ annealing::annealing(std::shared_ptr<solution> res,
 }
 
 void annealing::run_routine() {
+    signal(SIGUSR1, ctchr);
+    std::cout << getpid() << ": pausing" << std::endl;
+    pause();
+    std::cout << getpid() << ": unpaused" << std::endl;
     int sock_fd;
     sockaddr_un reduction_addr;
     memset(&reduction_addr, 0, sizeof(reduction_addr));
@@ -26,8 +33,12 @@ void annealing::run_routine() {
     strcpy(reduction_addr.sun_path, "123");
     int servlen =
         strlen(reduction_addr.sun_path) + sizeof(reduction_addr.sun_family);
-    int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    connect(sock_fd, (sockaddr*)&reduction_addr, servlen);
+    sock_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+    if (connect(sock_fd, (sockaddr*)&reduction_addr, servlen) < 0) {
+        // throw std::runtime_error(strerror("connect"));
+        perror("connect");
+        exit(1);
+    }
     std::cout << getpid() << ": connected to socket" << std::endl;
 
     std::random_device r;
@@ -59,8 +70,17 @@ void annealing::run_routine() {
         }
     }
     std::cout << getpid() << ": got " << best_target_func << std::endl;
-    write(sockfd, &best_target_func, sizeof(best_target_func));
-    close(sockfd);
+    if (write(sock_fd, &best_target_func, sizeof(best_target_func)) < 0) {
+        perror("write");
+        exit(1);
+    }
+
+    if (write(sock_fd, &cur_best, sizeof(cur_best)) < 0) {
+        perror("write");
+        exit(1);
+    }
+
+    close(sock_fd);
     exit(1);
 }
 
@@ -82,31 +102,59 @@ void annealing::anneal() {
         int sock_fd;
         sockaddr_un con_sock;
 
+        signal(SIGUSR1, ctchr);
+        unlink("123");
         sock_fd = socket(AF_UNIX, SOCK_STREAM, 0);
         memset(&con_sock, 0, sizeof(con_sock));
         con_sock.sun_family = AF_UNIX;
         strcpy(con_sock.sun_path, "123");
         socklen_t servelen =
             strlen(con_sock.sun_path) + sizeof(con_sock.sun_family);
-        bind(sock_fd, (sockaddr*)&con_sock, servelen);
+        if (bind(sock_fd, (sockaddr*)&con_sock, servelen) < 0) {
+            perror("bind");
+            exit(1);
+        }
         // change 5 to an acceptable number later
-        listen(sock_fd, 5);
+        if (listen(sock_fd, 5) < 0) {
+            perror("listen");
+            exit(1);
+        }
 
-        std::vector<decltype(best_target_func)> reduction_times;
+        for (pid_t wk : workers) {
+            std::cout << "sending out a signal to " << wk << std::endl;
+            kill(wk, SIGUSR1);
+        }
+
+        std::vector<std::pair<decltype(best_target_func), std::shared_ptr<solution>>> reduction_times;
         for (pid_t wk : workers) {
             sockaddr_un client_sock;
             socklen_t clilen = sizeof(client_sock);
             int cli_fd;
-            cli_fd = accept(sock_fd, (sockaddr*)&client_sock, &clilen);
+            if ((cli_fd = accept(sock_fd, (sockaddr*)&client_sock, &clilen)) <
+                0) {
+                perror("accept");
+                exit(1);
+            }
             decltype(best_target_func) best_func;
-            read(cli_fd, &best_func, sizeof(best_func));
-            reduction_times.push_back(best_func);
+
+            if (read(cli_fd, &best_func, sizeof(best_func)) < 0) {
+                perror("read");
+                exit(1);
+            }
+
+            decltype(cur_best) best;
+            if (read(cli_fd, &best, sizeof(best)) < 0) {
+                perror("read");
+                exit(1);
+            }
+
+            reduction_times.push_back(std::make_pair(best_func, best));
             close(cli_fd);
             wait(0);
         }
 
-        for(std::size_t time : reduction_times) {
-            std::cout << "got time to reduce: " << time << std::endl;
+        for (auto time : reduction_times) {
+            std::cout << "got time to reduce: " << time.first << std::endl;
         }
 
         close(sock_fd);
