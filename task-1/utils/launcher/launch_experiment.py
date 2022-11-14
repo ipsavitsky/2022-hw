@@ -3,21 +3,20 @@ import itertools
 import time
 import csv
 
-proc_sizes = range(100, 700, 100)
-task_amounts = range(30000, 38000, 1000)
+proc_sizes = [400]
+task_amounts = [34000]
 
 experiments = []
 for procs, tasks in itertools.product(proc_sizes, task_amounts):
     subprocess.run(["python3", "../generator/generator.py", str(procs), str(tasks), str(tasks*3), "res.csv"])
-    times_list = []
-    for n in range(5):
-        print(f"running test {n+1} on proc={procs}, tasks={tasks}")
+    for n in [1, 2, 4, 8, 16]:
+        print(f"running test {n+1} on proc={procs}, tasks={tasks}, threads")
         st = time.time()
-        subprocess.run(["../../build/sched", "res.csv", str(procs), "10"])
+        subprocess.run(["../../build/sched", "res.csv", str(procs), "10", str(n)])
         en = time.time()
-        times_list.append(en-st)
-    experiments.append([procs, tasks, sum(times_list)/len(times_list)])
+        experiments.append([procs, tasks, en-st, n])
 
-with open("out.csv", "w", newline="") as outfile:
+with open("out_parall.csv", "w", newline="") as outfile:
     wrtr = csv.writer(outfile)
+    wrtr.writerow(["procs", "tasks", "time", "n"])
     wrtr.writerows(experiments)

@@ -6,7 +6,7 @@
 #include "scheduling/annealing.hpp"
 
 int main(int argc, char* argv[]) {
-    if (argc < 3) {
+    if (argc < 4) {
         std::cout << "not enough arguments";
         return 0;
     }
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
         new log_div_n_temp(std::strtod(argv[3], nullptr)));
 
     annealing a(s, opers, temp);
-    a.anneal();
+    a.anneal(std::strtol(argv[4], nullptr, 10));
 
     std::shared_ptr<solution> res = a.get_solution();
 
