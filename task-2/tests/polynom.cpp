@@ -6,7 +6,6 @@ TEST(TEST_POLYNOM, test_func) {
     ASSERT_DOUBLE_EQ(86, pol(5));
 }
 
-
 // 3 + 2 * x + 1 * x**2
 // 2 + 2*x
 TEST(TEST_POLYNOM, test_deriv) {

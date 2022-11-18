@@ -22,4 +22,7 @@ TEST(TEST_FACTORY, test_funcs_creation) {
     auto pol_a = f.create_object("polynom", {3, 4, 1, 2, 3});
     polynom pol_b{3, 4, 5};
     ASSERT_EQ(typeid(*pol_a), typeid(pol_b));
+
+    auto nptr = f.create_object("blah_blah_blah", {});
+    ASSERT_EQ(nptr, nullptr);
 }

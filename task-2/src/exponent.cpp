@@ -8,7 +8,7 @@ exponent::exponent(std::initializer_list<double> exp_val) {
     if (exp_val.size() == 1) {
         exp = *(exp_val.begin());
     } else {
-        throw std::runtime_error("incorrect number of parameters");
+        throw std::invalid_argument("invalid number of arguments");
     }
 }
 

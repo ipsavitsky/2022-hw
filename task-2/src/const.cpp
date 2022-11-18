@@ -7,7 +7,7 @@ _const::_const(std::initializer_list<double> _const_inp) {
     if (_const_inp.size() == 1) {
         _const_val = *(_const_inp.begin());
     } else {
-        throw std::runtime_error("incorrect number of parameters");
+        throw std::invalid_argument("invalid number of arguments");
     }
 }
 

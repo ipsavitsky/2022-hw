@@ -8,7 +8,7 @@ power::power(std::initializer_list<double> power_val) {
     if (power_val.size() == 1) {
         base = *(power_val.begin());
     } else {
-        throw std::runtime_error("invalid argument parameters");
+        throw std::invalid_argument("invalid number of arguments");
     }
 }
 

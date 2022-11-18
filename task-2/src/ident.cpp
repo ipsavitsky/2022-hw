@@ -4,7 +4,7 @@
 
 ident::ident(std::initializer_list<double> dummy) {
     if (dummy.size() != 0) {
-        throw std::runtime_error("invalid num of args");
+        throw std::invalid_argument("invalid number of arguments");
     }
 }
 
