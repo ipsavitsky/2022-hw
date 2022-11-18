@@ -17,5 +17,11 @@ double polynom::operator()(double x) const {
 }
 
 double polynom::get_deriv(double x) const {
-    throw std::runtime_error("not implemented");
+    int num = 0;
+    auto calc_poly = [x, &num](double coef) mutable {
+        ++num;
+        return coef * num * std::pow(x, num - 1);
+    };
+    return std::transform_reduce(std::next(coefs.cbegin()), coefs.cend(), 0,
+                                 std::plus{}, calc_poly);
 }
