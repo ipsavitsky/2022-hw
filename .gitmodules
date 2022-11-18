@@ -109,3 +109,6 @@
 [submodule "task-0/external/utility"]
 	path = task-0/external/utility
 	url = https://github.com/boostorg/utility.git
+[submodule "task-2/external/googletest"]
+	path = task-2/external/googletest
+	url = https://github.com/google/googletest
