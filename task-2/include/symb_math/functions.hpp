@@ -8,7 +8,7 @@ class function {
    public:
     virtual double operator()(double x) const = 0;
     virtual double get_deriv(double x) const = 0;
-    virtual ~function();
+    virtual ~function(){};
 };
 
 class ident : public function {
