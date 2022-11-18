@@ -13,6 +13,7 @@ class function {
 
 class ident : public function {
    public:
+    ident() = default;
     ident(std::initializer_list<double> dummy);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
@@ -23,6 +24,7 @@ class _const : public function {
     double _const_val;
 
    public:
+    _const(double _const_intp);
     _const(std::initializer_list<double> _const_inp);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
@@ -33,6 +35,7 @@ class power : public function {
     double base;
 
    public:
+    power(double power_val);
     power(std::initializer_list<double> power_val);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
@@ -43,6 +46,7 @@ class exponent : public function {
     double exp;
 
    public:
+    exponent(double exp_val);
     exponent(std::initializer_list<double> exp_val);
     double operator()(double x) const override;
     double get_deriv(double x) const override;

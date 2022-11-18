@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include "symb_math/functions.hpp"
 
+exponent::exponent(double exp_val) : exp(exp_val) {}
+
 exponent::exponent(std::initializer_list<double> exp_val) {
     if (exp_val.size() == 1) {
         exp = *(exp_val.begin());

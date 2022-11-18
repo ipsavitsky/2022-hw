@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include "symb_math/functions.hpp"
 
+_const::_const(double _const_inp) : _const_val(_const_inp) {}
+
 _const::_const(std::initializer_list<double> _const_inp) {
     if (_const_inp.size() == 1) {
         _const_val = *(_const_inp.begin());
