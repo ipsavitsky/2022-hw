@@ -11,7 +11,7 @@ class functions_factory {
    private:
     class creator_implementation {
        public:
-        ~creator_implementation();
+        virtual ~creator_implementation() {};
 
         virtual std::unique_ptr<function> create(
             std::initializer_list<double> init_vals) const = 0;
