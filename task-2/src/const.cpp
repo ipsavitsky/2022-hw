@@ -1,4 +1,4 @@
-#include "functions.hpp"
+#include "symb_math/functions.hpp"
 
 _const::_const(double _const_inp) : _const_val(_const_inp) {}
 

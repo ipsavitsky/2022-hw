@@ -1,4 +1,4 @@
-#include "functions.hpp"
+#include "symb_math/functions.hpp"
 
 double ident::operator()(double x) const {
     return x;

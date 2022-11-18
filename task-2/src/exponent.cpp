@@ -1,5 +1,5 @@
 #include <cmath>
-#include "functions.hpp"
+#include "symb_math/functions.hpp"
 
 exponent::exponent(double exp_val) : exp(exp_val) {}
 

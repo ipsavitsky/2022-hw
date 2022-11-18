@@ -1,5 +1,5 @@
 #include <cmath>
-#include "functions.hpp"
+#include "symb_math/functions.hpp"
 
 power::power(double power_val) : base(power_val) {}
 
