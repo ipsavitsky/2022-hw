@@ -62,4 +62,44 @@ class polynom : public function {
     double get_deriv(double x) const override;
 };
 
+class sum_func : public function {
+   private:
+    function &left_r, &right_r;
+
+   public:
+    sum_func(function& left, function& right);
+    double operator()(double x) const override;
+    double get_deriv(double x) const override;
+};
+
+class sub_func : public function {
+   private:
+    function &left_r, &right_r;
+
+   public:
+    sub_func(function& left, function& right);
+    double operator()(double x) const override;
+    double get_deriv(double x) const override;
+};
+
+class mul_func : public function {
+   private:
+    function &left_r, &right_r;
+
+   public:
+    mul_func(function& left, function& right);
+    double operator()(double x) const override;
+    double get_deriv(double x) const override;
+};
+
+class div_func : public function {
+   private:
+    function &left_r, &right_r;
+
+   public:
+    div_func(function& left, function& right);
+    double operator()(double x) const override;
+    double get_deriv(double x) const override;
+};
+
 #endif

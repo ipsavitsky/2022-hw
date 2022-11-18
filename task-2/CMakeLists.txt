@@ -7,6 +7,7 @@ file(GLOB SOURCES src/*.cpp)
 include_directories(include)
 add_library(symb_math ${SOURCES})
 
+set(INSTALL_GTEST OFF)
 add_subdirectory(external/googletest)
 enable_testing()
 
