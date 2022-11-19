@@ -1,6 +1,6 @@
 #include "symb_math/functions.hpp"
 
-sub_func::sub_func(function& left, function& right)
+sub_func::sub_func(const function& left, const function& right)
     : left_r(left), right_r(right) {}
 
 double sub_func::operator()(double x) const {

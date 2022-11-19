@@ -2,6 +2,7 @@
 #define FUNCTIONS_HPP__
 
 #include <initializer_list>
+#include <stdexcept>
 #include <vector>
 
 class function {
@@ -64,42 +65,78 @@ class polynom : public function {
 
 class sum_func : public function {
    private:
-    function &left_r, &right_r;
+    const function &left_r, &right_r;
 
    public:
-    sum_func(function& left, function& right);
+    sum_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
 };
 
 class sub_func : public function {
    private:
-    function &left_r, &right_r;
+    const function &left_r, &right_r;
 
    public:
-    sub_func(function& left, function& right);
+    sub_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
 };
 
 class mul_func : public function {
    private:
-    function &left_r, &right_r;
+    const function &left_r, &right_r;
 
    public:
-    mul_func(function& left, function& right);
+    mul_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
 };
 
 class div_func : public function {
    private:
-    function &left_r, &right_r;
+    const function &left_r, &right_r;
 
    public:
-    div_func(function& left, function& right);
+    div_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
 };
+
+template <typename T>
+sum_func operator+(const function& a, const T& b) {
+    if constexpr (std::is_base_of_v<function, T>) {
+        return sum_func(a, b);
+    } else {
+        throw std::logic_error("cannot sum finc with that");
+    }
+}
+
+template <typename T>
+sub_func operator-(const function& a, const T& b) {
+    if constexpr (std::is_base_of_v<function, T>) {
+        return sub_func(a, b);
+    } else {
+        throw std::logic_error("cannot sum finc with that");
+    }
+}
+
+template <typename T>
+mul_func operator*(const function& a, const T& b) {
+    if constexpr (std::is_base_of_v<function, T>) {
+        return mul_func(a, b);
+    } else {
+        throw std::logic_error("cannot sum finc with that");
+    }
+}
+
+template <typename T>
+div_func operator/(const function& a, const T& b) {
+    if constexpr (std::is_base_of_v<function, T>) {
+        return div_func(a, b);
+    } else {
+        throw std::logic_error("cannot sum finc with that");
+    }
+}
 
 #endif

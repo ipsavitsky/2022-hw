@@ -1,6 +1,6 @@
 #include "symb_math/functions.hpp"
 
-sum_func::sum_func(function& left, function& right)
+sum_func::sum_func(const function& left, const function& right)
     : left_r(left), right_r(right) {}
 
 double sum_func::operator()(double x) const {

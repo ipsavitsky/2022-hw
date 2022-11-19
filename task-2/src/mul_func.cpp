@@ -1,6 +1,6 @@
 #include "symb_math/functions.hpp"
 
-mul_func::mul_func(function& left, function& right)
+mul_func::mul_func(const function& left, const function& right)
     : left_r(left), right_r(right) {}
 
 double mul_func::operator()(double x) const {
