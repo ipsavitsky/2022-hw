@@ -14,3 +14,10 @@ TEST(TEST_SUB_COMP, test_deriv) {
     sub_func s(x, y);
     ASSERT_DOUBLE_EQ(-8, s.get_deriv(2));
 }
+
+TEST(TEST_SUB_COMP, test_to_string) {
+    power x(3);
+    power y(2);
+    sub_func s(x, y);
+    ASSERT_EQ(s.to_string(), "(Power x^3.000000 - Power x^2.000000)");
+}

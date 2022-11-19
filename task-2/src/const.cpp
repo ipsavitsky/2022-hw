@@ -18,3 +18,8 @@ double _const::operator()(double x) const {
 double _const::get_deriv(double x) const {
     return 0;
 }
+
+std::string _const::to_string() const {
+    return "Const " + std::to_string(_const_val);
+    // return std::format("Const {}", _const_val);
+}

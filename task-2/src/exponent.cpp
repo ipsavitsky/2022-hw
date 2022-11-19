@@ -19,3 +19,7 @@ double exponent::operator()(double x) const {
 double exponent::get_deriv(double x) const {
     return std::pow(exp, x) * std::log(exp);
 }
+
+std::string exponent::to_string() const {
+    return "Exponent " + std::to_string(exp) + "^x";
+}

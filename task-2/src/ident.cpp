@@ -15,3 +15,7 @@ double ident::operator()(double x) const {
 double ident::get_deriv(double x) const {
     return 1;
 }
+
+std::string ident::to_string() const {
+    return "Ident x";
+}

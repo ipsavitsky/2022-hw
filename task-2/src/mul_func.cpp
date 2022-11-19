@@ -10,3 +10,7 @@ double mul_func::operator()(double x) const {
 double mul_func::get_deriv(double x) const {
     return left_r.get_deriv(x) * right_r(x) + left_r(x) * right_r.get_deriv(x);
 }
+
+std::string mul_func::to_string() const {
+    return "(" + left_r.to_string() + " * " + right_r.to_string() + ")";
+}

@@ -19,3 +19,7 @@ double power::operator()(double x) const {
 double power::get_deriv(double x) const {
     return base * std::pow(x, base - 1);
 }
+
+std::string power::to_string() const {
+    return "Power x^" + std::to_string(base);
+}

@@ -25,3 +25,13 @@ double polynom::get_deriv(double x) const {
     return std::transform_reduce(std::next(coefs.cbegin()), coefs.cend(), 0,
                                  std::plus{}, calc_poly);
 }
+
+std::string polynom::to_string() const {
+    int num = 1;
+    auto poly_fold = [&num](std::string cur, double b) mutable {
+        return std::move(cur) + " + " + std::to_string(b) + "*x^" +
+               std::to_string(num++);
+    };
+    return "Polynom " + std::accumulate(std::next(coefs.begin()), coefs.end(),
+                                        std::to_string(coefs[0]), poly_fold);
+}

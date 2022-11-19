@@ -17,3 +17,8 @@ TEST(TEST_CONST, test_throw) {
     ASSERT_THROW({ _const y{}; }, std::invalid_argument);
     // ASSERT_THROW({ _const y{1, 2, 3}; }, std::invalid_argument);
 }
+
+TEST(TEST_CONST, test_to_string) {
+    _const c(7);
+    ASSERT_EQ(c.to_string(), "Const 7.000000");
+}

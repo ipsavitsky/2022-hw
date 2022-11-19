@@ -12,3 +12,7 @@ double div_func::get_deriv(double x) const {
             left_r(x) * right_r.get_deriv(x)) /
            (right_r(x) * right_r(x));
 }
+
+std::string div_func::to_string() const {
+    return "(" + left_r.to_string() + " / " + right_r.to_string() + ")";
+}

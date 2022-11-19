@@ -12,3 +12,9 @@ TEST(TEST_POLYNOM, test_deriv) {
     polynom pol{3, 2, 1};
     ASSERT_DOUBLE_EQ(6, pol.get_deriv(2));
 }
+
+TEST(TEST_POLYNOM, test_to_string) {
+    polynom pol{3, 2, 1};
+    ASSERT_EQ(pol.to_string(),
+              "Polynom 3.000000 + 2.000000*x^1 + 1.000000*x^2");
+}

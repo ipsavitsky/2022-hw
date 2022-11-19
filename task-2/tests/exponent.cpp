@@ -15,3 +15,8 @@ TEST(TEST_EXPONENT, test_throw) {
     ASSERT_THROW({ exponent y{}; }, std::invalid_argument);
     // ASSERT_THROW({ _const y{1, 2, 3}; }, std::invalid_argument);
 }
+
+TEST(TEST_EXPONENT, test_to_string) {
+    exponent exp_5(5);
+    ASSERT_EQ(exp_5.to_string(), "Exponent 5.000000^x");
+}

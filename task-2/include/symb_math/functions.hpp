@@ -9,6 +9,7 @@ class function {
    public:
     virtual double operator()(double x) const = 0;
     virtual double get_deriv(double x) const = 0;
+    virtual std::string to_string() const = 0;
     virtual ~function(){};
 };
 
@@ -18,6 +19,7 @@ class ident : public function {
     ident(std::initializer_list<double> dummy);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class _const : public function {
@@ -29,6 +31,7 @@ class _const : public function {
     _const(std::initializer_list<double> _const_inp);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class power : public function {
@@ -40,6 +43,7 @@ class power : public function {
     power(std::initializer_list<double> power_val);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class exponent : public function {
@@ -51,6 +55,7 @@ class exponent : public function {
     exponent(std::initializer_list<double> exp_val);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class polynom : public function {
@@ -61,6 +66,7 @@ class polynom : public function {
     polynom(std::initializer_list<double> lst);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class sum_func : public function {
@@ -71,6 +77,7 @@ class sum_func : public function {
     sum_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class sub_func : public function {
@@ -81,6 +88,7 @@ class sub_func : public function {
     sub_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class mul_func : public function {
@@ -91,6 +99,7 @@ class mul_func : public function {
     mul_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 class div_func : public function {
@@ -101,6 +110,7 @@ class div_func : public function {
     div_func(const function& left, const function& right);
     double operator()(double x) const override;
     double get_deriv(double x) const override;
+    std::string to_string() const override;
 };
 
 template <typename T>
