@@ -23,3 +23,7 @@ double exponent::get_deriv(double x) const {
 std::string exponent::to_string() const {
     return "Exponent " + std::to_string(exp) + "^x";
 }
+
+std::unique_ptr<function> exponent::clone() const {
+    return std::make_unique<exponent>(*this);
+}

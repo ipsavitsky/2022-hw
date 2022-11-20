@@ -20,3 +20,9 @@ TEST(TEST_POWER, test_to_string) {
     power pow_3(3);
     ASSERT_EQ(pow_3.to_string(), "Power x^3.000000");
 }
+
+TEST(TEST_POWER, test_clone) {
+    power c(2);
+    auto a = c.clone();
+    ASSERT_DOUBLE_EQ(25, (*a)(5));
+}

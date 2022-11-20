@@ -19,3 +19,7 @@ double ident::get_deriv(double x) const {
 std::string ident::to_string() const {
     return "Ident x";
 }
+
+std::unique_ptr<function> ident::clone() const {
+    return std::make_unique<ident>(*this);
+}

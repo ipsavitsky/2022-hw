@@ -18,3 +18,9 @@ TEST(TEST_POLYNOM, test_to_string) {
     ASSERT_EQ(pol.to_string(),
               "Polynom 3.000000 + 2.000000*x^1 + 1.000000*x^2");
 }
+
+TEST(TEST_POLYNOM, test_clone) {
+    polynom c{1, 2, 3};
+    auto a = c.clone();
+    ASSERT_DOUBLE_EQ(86, (*a)(5));
+}

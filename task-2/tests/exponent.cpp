@@ -20,3 +20,9 @@ TEST(TEST_EXPONENT, test_to_string) {
     exponent exp_5(5);
     ASSERT_EQ(exp_5.to_string(), "Exponent 5.000000^x");
 }
+
+TEST(TEST_EXPONENT, test_clone) {
+    exponent c(2);
+    auto a = c.clone();
+    ASSERT_DOUBLE_EQ(32, (*a)(5));
+}

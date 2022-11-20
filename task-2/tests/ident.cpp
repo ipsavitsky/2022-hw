@@ -20,3 +20,9 @@ TEST(TEST_IDENT, test_to_string) {
     ident id;
     ASSERT_EQ(id.to_string(), "Ident x");
 }
+
+TEST(TEST_CONST, test_clone) {
+    ident c;
+    auto a = c.clone();
+    ASSERT_DOUBLE_EQ(5, (*a)(5));
+}

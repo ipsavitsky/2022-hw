@@ -23,3 +23,7 @@ double power::get_deriv(double x) const {
 std::string power::to_string() const {
     return "Power x^" + std::to_string(base);
 }
+
+std::unique_ptr<function> power::clone() const {
+    return std::make_unique<power>(*this);
+}

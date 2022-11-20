@@ -35,3 +35,7 @@ std::string polynom::to_string() const {
     return "Polynom " + std::accumulate(std::next(coefs.begin()), coefs.end(),
                                         std::to_string(coefs[0]), poly_fold);
 }
+
+std::unique_ptr<function> polynom::clone() const {
+    return std::make_unique<polynom>(*this);
+}

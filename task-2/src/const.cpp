@@ -23,3 +23,7 @@ std::string _const::to_string() const {
     return "Const " + std::to_string(_const_val);
     // return std::format("Const {}", _const_val);
 }
+
+std::unique_ptr<function> _const::clone() const {
+    return std::make_unique<_const>(*this);
+}

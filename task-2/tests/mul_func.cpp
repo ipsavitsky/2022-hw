@@ -21,3 +21,11 @@ TEST(TEST_MUL_COMP, test_to_string) {
     mul_func s(x, y);
     ASSERT_EQ(s.to_string(), "(Power x^3.000000 * Power x^2.000000)");
 }
+
+TEST(TEST_MUL_COMP, test_clone) {
+    power x(2);
+    power y(3);
+    mul_func s(x, y);
+    auto k = s.clone();
+    ASSERT_DOUBLE_EQ(243, (*k)(3));
+}

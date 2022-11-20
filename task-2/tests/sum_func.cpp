@@ -21,3 +21,11 @@ TEST(TEST_SUM_COMP, test_to_string) {
     sum_func s(x, y);
     ASSERT_EQ(s.to_string(), "(Power x^3.000000 + Power x^2.000000)");
 }
+
+TEST(TEST_SUM_COMP, test_clone) {
+    power x(3);
+    power y(2);
+    sum_func s(x, y);
+    auto k = s.clone();
+    ASSERT_DOUBLE_EQ(36, (*k)(3));
+}

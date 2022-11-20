@@ -22,3 +22,9 @@ TEST(TEST_CONST, test_to_string) {
     _const c(7);
     ASSERT_EQ(c.to_string(), "Const 7.000000");
 }
+
+TEST(TEST_CONST, test_clone) {
+    _const c(7);
+    auto a = c.clone();
+    ASSERT_DOUBLE_EQ(7, (*a)(5));
+}
