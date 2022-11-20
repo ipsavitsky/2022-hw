@@ -12,7 +12,7 @@ double polynom::operator()(double x) const {
     auto calc_poly = [x, &num](double coef) mutable {
         return coef * std::pow(x, num++);
     };
-    return std::transform_reduce(coefs.cbegin(), coefs.cend(), 0, std::plus{},
+    return std::transform_reduce(coefs.cbegin(), coefs.cend(), 0.0, std::plus{},
                                  calc_poly);
 }
 
@@ -22,7 +22,7 @@ double polynom::get_deriv(double x) const {
         ++num;
         return coef * num * std::pow(x, num - 1);
     };
-    return std::transform_reduce(std::next(coefs.cbegin()), coefs.cend(), 0,
+    return std::transform_reduce(std::next(coefs.cbegin()), coefs.cend(), 0.0,
                                  std::plus{}, calc_poly);
 }
 
