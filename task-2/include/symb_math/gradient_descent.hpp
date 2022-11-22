@@ -4,7 +4,7 @@
 #include <memory>
 #include "symb_math/functions.hpp"
 
-double gradient_descent(std::shared_ptr<function> func,
+double gradient_descent(const function& func,
                         double starting_point,
                         std::size_t am_of_iterations);
 
