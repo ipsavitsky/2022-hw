@@ -1,6 +1,7 @@
 #ifndef CMPRSD_VECTOR_HPP_
 #define CMPRSD_VECTOR_HPP_
 
+#include <iostream>
 #include <unordered_map>
 #include "exceptions.hpp"
 
@@ -13,26 +14,34 @@ class compressed_vector {
    public:
     class matrix_equality_proxy {
        private:
-        compressed_vector<T>* outer_vec;
+        compressed_vector<T>& outer_vec;
         std::size_t index;
         double eps = 10e-7;
 
        public:
-        matrix_equality_proxy(compressed_vector<T>* vec, std::size_t elem_num)
+        matrix_equality_proxy(compressed_vector<T>& vec, std::size_t elem_num)
             : outer_vec(vec), index(elem_num) {}
 
         operator T() { return outer_vec->operator()(index); }
 
         matrix_equality_proxy& operator=(T elem) {
             if (elem > eps) {
-                outer_vec->container[index] = elem;
+                outer_vec.container[index] = elem;
             }
             return *this;
         }
 
+        bool operator==(const matrix_equality_proxy& other) const {
+            return false;
+        }
+
+        bool operator==(const T& other) const {
+            return outer_vec.container[index] == other;
+        }
+
         friend std::ostream& operator<<(std::ostream& os,
                                         const matrix_equality_proxy& rn) {
-            os << rn;
+            os << rn.outer_vec.container[rn.index];
             return os;
         }
     };
@@ -41,12 +50,11 @@ class compressed_vector {
 
     std::size_t get_size() { return vec_size; }
 
-    matrix_equality_proxy& operator()(std::size_t access) {
+    matrix_equality_proxy operator()(std::size_t access) {
         if (access >= vec_size) {
             throw out_of_bounds_exception();
         }
-        auto ret = matrix_equality_proxy(this, access); 
-        return ret;
+        return matrix_equality_proxy(*this, access);
     }
 
     T at(std::size_t access) const {
