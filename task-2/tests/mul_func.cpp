@@ -1,31 +1,26 @@
 #include "gtest/gtest.h"
 #include "symb_math/functions.hpp"
 
-TEST(TEST_MUL_COMP, test_func) {
-    power x(2);
-    power y(3);
-    mul_func s(x, y);
-    ASSERT_DOUBLE_EQ(243, s(3));
+class mul_tests : public ::testing::Test {
+   protected:
+    power x = power(2);
+    power y = power(3);
+    mul_func s = mul_func(x, y);
+};
+
+TEST_F(mul_tests, test_func) {
+    EXPECT_DOUBLE_EQ(243, s(3));
 }
 
-TEST(TEST_MUL_COMP, test_deriv) {
-    power x(2);
-    power y(3);
-    mul_func s(x, y);
-    ASSERT_DOUBLE_EQ(80, s.get_deriv(2));
+TEST_F(mul_tests, test_deriv) {
+    EXPECT_DOUBLE_EQ(80, s.get_deriv(2));
 }
 
-TEST(TEST_MUL_COMP, test_to_string) {
-    power x(3);
-    power y(2);
-    mul_func s(x, y);
-    ASSERT_EQ(s.to_string(), "(Power x^3.000000 * Power x^2.000000)");
+TEST_F(mul_tests, test_to_string) {
+    EXPECT_EQ(s.to_string(), "(Power x^2.000000 * Power x^3.000000)");
 }
 
-TEST(TEST_MUL_COMP, test_clone) {
-    power x(2);
-    power y(3);
-    mul_func s(x, y);
+TEST_F(mul_tests, test_clone) {
     auto k = s.clone();
-    ASSERT_DOUBLE_EQ(243, (*k)(3));
+    EXPECT_DOUBLE_EQ(243, (*k)(3));
 }

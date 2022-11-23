@@ -10,5 +10,5 @@ TEST(TEST_PERSISTANCE, basic_test) {
         return *a + *b;
     };
     auto outer_scope = inner_scope();
-    ASSERT_DOUBLE_EQ(15, outer_scope(10));
+    EXPECT_DOUBLE_EQ(15, outer_scope(10));
 }

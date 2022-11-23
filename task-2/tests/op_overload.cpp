@@ -1,58 +1,52 @@
 #include "gtest/gtest.h"
 #include "symb_math/functions.hpp"
 
-TEST(TEST_OPERATOR, test_sum) {
+class operator_test : public ::testing::Test {
+   protected:
     ident id;
-    power x_2(2);
+    power x_2 = power(2);
+};
+
+TEST_F(operator_test, test_sum) {
     auto s = id + x_2;
     sum_func s_2(id, x_2);
-    ASSERT_EQ(typeid(s), typeid(s_2));
-    ASSERT_DOUBLE_EQ(42, s(6));
+    EXPECT_EQ(typeid(s), typeid(s_2));
+    EXPECT_DOUBLE_EQ(42, s(6));
 }
 
-TEST(TEST_OPERATOR, test_sub) {
-    ident id;
-    power x_2(2);
+TEST_F(operator_test, test_sub) {
     auto s = id - x_2;
     sub_func s_2(id, x_2);
-    ASSERT_EQ(typeid(s), typeid(s_2));
-    ASSERT_DOUBLE_EQ(-30, s(6));
+    EXPECT_EQ(typeid(s), typeid(s_2));
+    EXPECT_DOUBLE_EQ(-30, s(6));
 }
 
-TEST(TEST_OPERATOR, test_mul) {
-    ident id;
-    power x_2(2);
+TEST_F(operator_test, test_mul) {
     auto s = id * x_2;
     mul_func s_2(id, x_2);
-    ASSERT_EQ(typeid(s), typeid(s_2));
-    ASSERT_DOUBLE_EQ(216, s(6));
+    EXPECT_EQ(typeid(s), typeid(s_2));
+    EXPECT_DOUBLE_EQ(216, s(6));
 }
 
-TEST(TEST_OPERATOR, test_div) {
-    ident id;
-    power x_2(2);
+TEST_F(operator_test, test_div) {
     auto s = x_2 / id;
     div_func s_2(id, x_2);
-    ASSERT_EQ(typeid(s), typeid(s_2));
-    ASSERT_DOUBLE_EQ(6, s(6));
+    EXPECT_EQ(typeid(s), typeid(s_2));
+    EXPECT_DOUBLE_EQ(6, s(6));
 }
 
-TEST(TEST_OPERTAOR, sfinae_sum) {
-    ident id;
-    ASSERT_THROW({ id + "123"; }, std::logic_error);
+TEST_F(operator_test, sfinae_sum) {
+    EXPECT_THROW({ id + "123"; }, std::logic_error);
 }
 
-TEST(TEST_OPERTAOR, sfinae_sub) {
-    ident id;
-    ASSERT_THROW({ id - "123"; }, std::logic_error);
+TEST_F(operator_test, sfinae_sub) {
+    EXPECT_THROW({ id - "123"; }, std::logic_error);
 }
 
-TEST(TEST_OPERTAOR, sfinae_mul) {
-    ident id;
-    ASSERT_THROW({ id * "123"; }, std::logic_error);
+TEST_F(operator_test, sfinae_mul) {
+    EXPECT_THROW({ id * "123"; }, std::logic_error);
 }
 
-TEST(TEST_OPERTAOR, sfinae_div) {
-    ident id;
-    ASSERT_THROW({ id / "123"; }, std::logic_error);
+TEST_F(operator_test, sfinae_div) {
+    EXPECT_THROW({ id / "123"; }, std::logic_error);
 }
